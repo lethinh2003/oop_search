@@ -1,39 +1,15 @@
 "use client";
 import { Box, Typography } from "@mui/material";
-import axios from "axios";
 import Link from "next/link";
-import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import ChuongHoc from "../Navigation/ChuongHoc";
 
-const NavigationMobile = () => {
+const NavigationMobile = ({ staticData }) => {
   const getStatusNavigation = useSelector((state) => state.navigation.on);
-
-  const callDataApi = async () => {
-    const results = await axios.get(
-      `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/phanloai/get-all`
-    );
-    return results.data;
-  };
-  const getListQuery = useQuery(
-    ["get-navigation-learning"],
-    () => callDataApi(),
-    {
-      cacheTime: Infinity,
-      refetchOnWindowFocus: false,
-    }
-  );
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError: isErrorQuery,
-    error,
-  } = getListQuery;
 
   return (
     <>
-      {getStatusNavigation && (
+      {getStatusNavigation && staticData && (
         <Box
           sx={{
             marginTop: "64px",
@@ -54,8 +30,8 @@ const NavigationMobile = () => {
                 height: "100%",
               }}
             >
-              {data &&
-                data.data?.map((e, i) => (
+              {staticData.data &&
+                staticData.data?.map((e, i) => (
                   <Box
                     key={i}
                     sx={{

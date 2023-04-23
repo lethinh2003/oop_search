@@ -1,10 +1,32 @@
 import Content from "@/components/Learn/BaiHoc/Content";
 
-const Home = () => {
+export async function generateStaticParams() {
+  const posts = await fetch(
+    `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/baihoc`
+  ).then((res) => res.json());
+
+  return posts.data.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+const Home = async ({ params }) => {
+  const { slug } = params;
+  const data = await getDataBaiHoc(slug);
   return (
     <>
-      <Content />
+      <Content data={data} />
     </>
   );
 };
 export default Home;
+async function getDataBaiHoc(slug) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/baihoc/chitiet/${slug}`,
+    { next: { revalidate: 10 } }
+  );
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}

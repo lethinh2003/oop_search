@@ -1,37 +1,29 @@
 "use client";
+import { setNavigationContent } from "@/redux/actions/_navigationContent";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import TableOfContent from "../Layout/TableOfContent";
 import BaiHocLienQuan from "./BaiHocLienQuan";
-import BaiHocLoading from "./BaiHocLoading";
-const Content = () => {
-  const params = useParams();
-  const callDataApi = async (slug) => {
-    const results = await axios.get(
-      `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/baihoc/chitiet/${slug}`
-    );
-    return results.data;
-  };
-  const getListQuery = useQuery(
-    ["get-detail-learning", params.slug],
-    () => callDataApi(params.slug),
-    {
-      cacheTime: Infinity,
-      refetchOnWindowFocus: false,
+const Content = ({ data }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data && data.data) {
+      dispatch(
+        setNavigationContent({
+          phanLoai: data.data.phanMuc.chuongHoc.phanLoai.slug,
+          chuongHoc: data.data.phanMuc.chuongHoc.slug,
+          phanMuc: data.data.phanMuc.slug,
+          baiHoc: data.data.slug,
+        })
+      );
     }
-  );
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError: isErrorQuery,
-    error,
-  } = getListQuery;
+  }, [data]);
+  const params = useParams();
   const BreadcrumbItem = styled(Box)(({ theme }) => ({
     textTransform: "uppercase",
     color: "#087ea4",
@@ -40,8 +32,7 @@ const Content = () => {
   }));
   return (
     <>
-      {isLoading && <BaiHocLoading />}
-      {!isLoading && data && data.data && (
+      {data && data.data && (
         <>
           <Box
             sx={{

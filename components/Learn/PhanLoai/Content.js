@@ -1,39 +1,29 @@
 "use client";
 
+import { setNavigationContent } from "@/redux/actions/_navigationContent";
 import { Box, Typography } from "@mui/material";
-import axios from "axios";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
-import BaiHocLoading from "../BaiHoc/BaiHocLoading";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import DanhSachCacChuong from "./DanhSachCacChuong";
-const Content = () => {
-  const params = useParams();
-  const callDataApi = async (slug) => {
-    const results = await axios.get(
-      `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/phanloai/chitiet/${slug}`
-    );
-    return results.data;
-  };
-  const getListQuery = useQuery(
-    ["get-detail-phanloai", params.slug],
-    () => callDataApi(params.slug),
-    {
-      cacheTime: Infinity,
-      refetchOnWindowFocus: false,
+const Content = ({ data }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data && data.data) {
+      dispatch(
+        setNavigationContent({
+          phanLoai: data.data.slug,
+          chuongHoc: null,
+          phanMuc: null,
+          baiHoc: null,
+        })
+      );
     }
-  );
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError: isErrorQuery,
-    error,
-  } = getListQuery;
-
+  }, [data]);
+  const params = useParams();
   return (
     <>
-      {isLoading && <BaiHocLoading />}
-      {!isLoading && data && data.data && (
+      {data && data.data && (
         <Box
           sx={{
             display: "flex",

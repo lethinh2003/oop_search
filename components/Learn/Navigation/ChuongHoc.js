@@ -4,12 +4,26 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, IconButton, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import PhanMuc from "./PhanMuc";
 const ChuongHoc = ({ chuong }) => {
+  const getNavigationContent = useSelector((state) => state.navigationContent);
+
   const [isExpand, setIsExpand] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  useEffect(() => {
+    if (getNavigationContent && getNavigationContent.chuongHoc) {
+      if (getNavigationContent.chuongHoc === chuong.slug) {
+        setIsExpand(true);
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    }
+  }, [getNavigationContent]);
+
   useEffect(() => {
     if (pathname.startsWith("/learn/chuong-hoc/")) {
       const getSlugChuongHoc = pathname.split("/")[3];

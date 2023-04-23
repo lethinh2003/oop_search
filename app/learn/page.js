@@ -1,5 +1,6 @@
 import Content from "@/components/Learn/HomePage/Content";
-const Home = () => {
+
+const Home = ({}) => {
   return (
     <>
       <Content />
