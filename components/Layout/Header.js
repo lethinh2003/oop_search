@@ -6,7 +6,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "./SearchInput";
-const Header = () => {
+const Header = ({}) => {
   const dispatch = useDispatch();
   const getStatusNavigation = useSelector((state) => state.navigation.on);
   const handleClickNavigation = () => {
@@ -27,6 +27,7 @@ const Header = () => {
           color: "text.color.first",
           padding: "10px",
           zIndex: 99,
+          boxShadow: "0 3px 6px #0000001a",
         }}
       >
         <Box

@@ -1,37 +1,30 @@
 "use client";
 
+import { setNavigationContent } from "@/redux/actions/_navigationContent";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { useQuery } from "react-query";
-import BaiHocLoading from "../BaiHoc/BaiHocLoading";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import DanhSachCacPhanMuc from "./DanhSachCacPhanMuc";
-const Content = () => {
-  const params = useParams();
-  const callDataApi = async (slug) => {
-    const results = await axios.get(
-      `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/chuonghoc/chitiet/${slug}`
-    );
-    return results.data;
-  };
-  const getListQuery = useQuery(
-    ["get-detail-chuonghoc", params.slug],
-    () => callDataApi(params.slug),
-    {
-      cacheTime: Infinity,
-      refetchOnWindowFocus: false,
+const Content = ({ data }) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (data && data.data) {
+      dispatch(
+        setNavigationContent({
+          phanLoai: data.data.phanLoai.slug,
+          chuongHoc: data.data.slug,
+          phanMuc: null,
+          baiHoc: null,
+        })
+      );
     }
-  );
-  const {
-    data,
-    isLoading,
-    isFetching,
-    isError: isErrorQuery,
-    error,
-  } = getListQuery;
+  }, [data]);
+  const params = useParams();
+
   const BreadcrumbItem = styled(Box)(({ theme }) => ({
     textTransform: "uppercase",
     color: "#087ea4",
@@ -40,8 +33,7 @@ const Content = () => {
   }));
   return (
     <>
-      {isLoading && <BaiHocLoading />}
-      {!isLoading && data && data.data && (
+      {data && data.data && (
         <Box
           sx={{
             display: "flex",

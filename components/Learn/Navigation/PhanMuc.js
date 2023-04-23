@@ -4,12 +4,27 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, IconButton, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import BaiHoc from "./BaiHoc";
+
 const PhanMuc = ({ phanmuc }) => {
   const [isExpand, setIsExpand] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
+  const getNavigationContent = useSelector((state) => state.navigationContent);
+
+  useEffect(() => {
+    if (getNavigationContent && getNavigationContent.phanMuc) {
+      if (getNavigationContent.phanMuc === phanmuc.slug) {
+        setIsExpand(true);
+        setIsActive(true);
+      } else {
+        setIsActive(false);
+      }
+    }
+  }, [getNavigationContent]);
+
   useEffect(() => {
     if (pathname.startsWith("/learn/phan-muc/")) {
       const getSlugPhanMuc = pathname.split("/")[3];
