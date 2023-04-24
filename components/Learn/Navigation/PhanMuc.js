@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import BaiHoc from "./BaiHoc";
 
-const PhanMuc = ({ phanmuc }) => {
+const PhanMuc = ({ phanmuc, i }) => {
   const [isExpand, setIsExpand] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
@@ -36,7 +36,6 @@ const PhanMuc = ({ phanmuc }) => {
   const handleClick = (e, phanmuc) => {
     e.preventDefault();
     router.push(`/learn/phan-muc/${phanmuc.slug}`);
-    setIsExpand(true);
   };
   return (
     <>
@@ -45,7 +44,7 @@ const PhanMuc = ({ phanmuc }) => {
           padding: "8px 10px",
           paddingLeft: "15px",
           cursor: "pointer",
-          backgroundColor: isActive ? "#e6f7ff" : "",
+          backgroundColor: "",
           borderTopRightRadius: "20px",
           borderBottomRightRadius: "20px",
           "&:hover": {
@@ -64,7 +63,7 @@ const PhanMuc = ({ phanmuc }) => {
           }}
           onClick={(e) => handleClick(e, phanmuc)}
         >
-          {phanmuc.tenPhanMuc}
+          Phân mục {i + 1}: {phanmuc.tenPhanMuc}
         </Typography>
         <IconButton onClick={() => setIsExpand(!isExpand)}>
           {!isExpand && (
@@ -91,7 +90,7 @@ const PhanMuc = ({ phanmuc }) => {
         }}
       >
         {phanmuc.baiHoc?.map((baihoc, i) => (
-          <BaiHoc key={i} baihoc={baihoc} />
+          <BaiHoc key={i} baihoc={baihoc} i={i} />
         ))}
       </Box>
     </>

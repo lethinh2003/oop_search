@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const BaiHoc = ({ baihoc }) => {
+const BaiHoc = ({ baihoc, i }) => {
   const pathname = usePathname();
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
@@ -17,7 +17,6 @@ const BaiHoc = ({ baihoc }) => {
   }, [pathname]);
   const handleClick = (e, baihoc) => {
     e.preventDefault();
-    console.log(baihoc);
     router.push(`/learn/bai-hoc/${baihoc.slug}`);
   };
   return (
@@ -46,7 +45,7 @@ const BaiHoc = ({ baihoc }) => {
           }}
           onClick={(e) => handleClick(e, baihoc)}
         >
-          {baihoc.tenBaiHoc}
+          Bài {i + 1}: {baihoc.tenBaiHoc}
         </Typography>
       </Box>
     </>

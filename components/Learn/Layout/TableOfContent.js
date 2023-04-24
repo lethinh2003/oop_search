@@ -53,7 +53,7 @@ const TableOfContent = ({ dataPost }) => {
       <Box
         sx={{
           display: { xs: "none", lg: "flex" },
-
+          borderLeft: "2px solid #dedada",
           flexDirection: "column",
           bgcolor: "background.default",
           justifyContent: "center",

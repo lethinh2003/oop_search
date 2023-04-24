@@ -86,14 +86,7 @@ const getDesignTokens = (mode) => ({
   typography: {
     fontSize: 25,
 
-    fontFamily: [
-      "Noto Sans",
-      "League Spartan",
-      "Bebas Neue",
-      "IBM Plex Sans",
-      "Poppins",
-      "sans-serif",
-    ].join(","),
+    fontFamily: ["Intent", "Noto Sans", "sans-serif"].join(","),
   },
   palette: {
     mode,

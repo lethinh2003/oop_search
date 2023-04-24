@@ -12,9 +12,10 @@ const Navigation = ({ staticData }) => {
             backgroundColor: "header.background.default",
             height: "calc(100vh - 64px)",
             color: "text.color.first",
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", md: "block" },
             top: "64px",
             position: "sticky",
+            borderRight: "2px solid #dedada",
           }}
         >
           <Box

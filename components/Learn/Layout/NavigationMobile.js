@@ -22,7 +22,12 @@ const NavigationMobile = ({ staticData }) => {
             bottom: 0,
           }}
         >
-          <Box sx={{}}>
+          <Box
+            sx={{
+              maxHeight: "calc(100vh - 64px)",
+              overflowY: "auto",
+            }}
+          >
             <Box
               sx={{
                 paddingRight: "1.25rem",
@@ -58,8 +63,8 @@ const NavigationMobile = ({ staticData }) => {
                         </Typography>
                       </Link>
                     </Box>
-                    {e.chuongHoc?.map((chuong) => (
-                      <ChuongHoc chuong={chuong} />
+                    {e.chuongHoc?.map((chuong, i) => (
+                      <ChuongHoc chuong={chuong} i={i} />
                     ))}
                   </Box>
                 ))}

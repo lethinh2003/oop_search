@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PhanMuc from "./PhanMuc";
-const ChuongHoc = ({ chuong }) => {
+const ChuongHoc = ({ chuong, i }) => {
   const getNavigationContent = useSelector((state) => state.navigationContent);
 
   const [isExpand, setIsExpand] = useState(false);
@@ -35,7 +35,6 @@ const ChuongHoc = ({ chuong }) => {
   const handleClick = (e, chuonghoc) => {
     e.preventDefault();
     router.push(`/learn/chuong-hoc/${chuonghoc.slug}`);
-    setIsExpand(true);
   };
   return (
     <>
@@ -49,7 +48,7 @@ const ChuongHoc = ({ chuong }) => {
           sx={{
             borderTopRightRadius: "20px",
             borderBottomRightRadius: "20px",
-            backgroundColor: isActive ? "#e6f7ff" : "",
+
             padding: "8px 10px",
             display: "flex",
             alignItems: "center",
@@ -68,7 +67,7 @@ const ChuongHoc = ({ chuong }) => {
             }}
             onClick={(e) => handleClick(e, chuong)}
           >
-            {chuong.tenChuongHoc}
+            Chương {i + 1}: {chuong.tenChuongHoc}
           </Typography>
 
           <IconButton onClick={() => setIsExpand(!isExpand)}>
@@ -96,7 +95,7 @@ const ChuongHoc = ({ chuong }) => {
           }}
         >
           {chuong.phanMuc?.map((phanmuc, i) => (
-            <PhanMuc key={i} phanmuc={phanmuc} />
+            <PhanMuc key={i} phanmuc={phanmuc} i={i} />
           ))}
         </Box>
       </Box>

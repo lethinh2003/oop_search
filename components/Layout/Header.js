@@ -47,7 +47,7 @@ const Header = ({}) => {
           >
             <IconButton
               onClick={handleClickNavigation}
-              sx={{ display: { xs: "flex", sm: "none" } }}
+              sx={{ display: { xs: "flex", md: "none" } }}
             >
               {!getStatusNavigation && <ReorderIcon />}
               {getStatusNavigation && <ClearIcon />}
