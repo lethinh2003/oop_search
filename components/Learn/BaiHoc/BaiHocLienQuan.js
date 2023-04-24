@@ -2,7 +2,6 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 const BaiHocLienQuan = ({ data }) => {
-  console.log(data);
   return (
     <>
       {data && data.baiHocLienQuan && data.baiHocLienQuan.length > 0 && (

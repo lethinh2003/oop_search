@@ -54,7 +54,7 @@ const PhanLoai = ({ phanLoai }) => {
           </Link>
         </Box>
         {phanLoai.chuongHoc?.map((chuong, i) => (
-          <ChuongHoc key={i} chuong={chuong} />
+          <ChuongHoc key={i} chuong={chuong} i={i} />
         ))}
       </Box>
     </>
