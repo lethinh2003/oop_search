@@ -14,7 +14,6 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
-      document.title = `Bài học: ${data.data.tenBaiHoc}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.phanMuc.chuongHoc.phanLoai.slug,

@@ -10,7 +10,6 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
-      document.title = `Phân loại: ${data.data.tenPhanLoai}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.slug,
