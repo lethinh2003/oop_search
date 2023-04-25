@@ -8,7 +8,7 @@ const Main = ({ children }) => {
         sx={{
           marginTop: "64px",
           width: "100%",
-          backgroundColor: "header.background.default",
+          backgroundColor: "body.background.default",
           color: "text.color.first",
           padding: "10px",
         }}

@@ -1,7 +1,7 @@
 "use client";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -48,13 +48,12 @@ const ChuongHoc = ({ chuong, i }) => {
           sx={{
             borderTopRightRadius: "20px",
             borderBottomRightRadius: "20px",
-
             padding: "8px 10px",
             display: "flex",
             alignItems: "center",
             cursor: "pointer",
             "&:hover": {
-              backgroundColor: "#f6f7f9",
+              backgroundColor: "navigationItem.background.hover",
               borderTopRightRadius: "20px",
               borderBottomRightRadius: "20px",
             },
@@ -63,14 +62,14 @@ const ChuongHoc = ({ chuong, i }) => {
           <Typography
             sx={{
               fontWeight: "600",
-              color: isActive ? "#087ea4" : "#23272f",
+              color: isActive ? "#087ea4" : "",
             }}
             onClick={(e) => handleClick(e, chuong)}
           >
             Chương {i + 1}: {chuong.tenChuongHoc}
           </Typography>
 
-          <IconButton onClick={() => setIsExpand(!isExpand)}>
+          <Box onClick={() => setIsExpand(!isExpand)}>
             {!isExpand && (
               <KeyboardArrowRightIcon
                 sx={{
@@ -87,7 +86,7 @@ const ChuongHoc = ({ chuong, i }) => {
                 }}
               />
             )}
-          </IconButton>
+          </Box>
         </Box>
         <Box
           sx={{

@@ -1,10 +1,14 @@
 "use client";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
+
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-const TableOfContent = ({ dataPost }) => {
+const TableOfContentMobile = ({ dataPost }) => {
   const [listContents, setListContents] = useState([]);
   const [isContentPos, setIsContentPos] = useState("");
+  const [isExpand, setIsExpand] = useState(false);
   useEffect(() => {
     const data = [];
     const getH1elements = document.querySelectorAll(".content-html h2");
@@ -37,8 +41,8 @@ const TableOfContent = ({ dataPost }) => {
   const handleClickContent = (item) => {
     window.scrollTo(0, item.offsetTop - item.offsetHeight);
     // item.scrollIntoView({
-    //   behavior: "smooth",
-    //   block: "start",
+    //   behavior: "auto",
+    //   block: "end",
     // });
   };
   const TitleContent = styled(Typography)({
@@ -52,11 +56,11 @@ const TableOfContent = ({ dataPost }) => {
     <>
       <Box
         sx={{
-          display: { xs: "none", lg: "flex" },
-          borderLeft: "2px solid",
-          borderLeftColor: "navigationItem.color.bottom",
+          display: { xs: "flex", lg: "none" },
+          boxShadow: (theme) =>
+            `1px 2px 6px 0px ${theme.palette.backgroundCode.background.boxShadow}`,
           flexDirection: "column",
-          backgroundColor: "body.background.default",
+          backgroundColor: "card.background.default",
           justifyContent: "center",
           color: "text.primary",
           gap: "10px",
@@ -64,9 +68,10 @@ const TableOfContent = ({ dataPost }) => {
           position: "-webkit-sticky",
           position: "sticky",
           top: 64,
-          width: "250px",
-
-          maxWidth: "250px",
+          width: "100%",
+          borderRadius: "10px",
+          marginTop: "20px",
+          padding: "20px",
         }}
       >
         <Typography
@@ -77,14 +82,24 @@ const TableOfContent = ({ dataPost }) => {
             padding: "8px 10px",
 
             color: "navigationItem.color.phanLoai",
+            borderBottom: "2px solid",
+            borderBottomColor: "navigationItem.color.bottom",
+            display: "flex",
+            justifyContent: "space-between",
           }}
         >
           On this page
+          {isExpand && (
+            <KeyboardArrowDownIcon onClick={() => setIsExpand(!isExpand)} />
+          )}
+          {!isExpand && (
+            <KeyboardArrowRightIcon onClick={() => setIsExpand(!isExpand)} />
+          )}
         </Typography>
         <Box
           className="tableofcontents"
           sx={{
-            display: "flex",
+            display: isExpand ? "flex" : "none",
             alignItems: "flex-start",
             flexDirection: "column",
 
@@ -135,4 +150,4 @@ const TableOfContent = ({ dataPost }) => {
     </>
   );
 };
-export default TableOfContent;
+export default TableOfContentMobile;

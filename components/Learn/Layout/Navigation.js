@@ -9,13 +9,14 @@ const Navigation = ({ staticData }) => {
           sx={{
             marginTop: "64px",
             width: "320px",
-            backgroundColor: "header.background.default",
+            backgroundColor: "body.background.default",
             height: "calc(100vh - 64px)",
             color: "text.color.first",
             display: { xs: "none", md: "block" },
             top: "64px",
             position: "sticky",
-            borderRight: "2px solid #dedada",
+            borderRight: "2px solid",
+            borderRightColor: "navigationItem.color.bottom",
           }}
         >
           <Box

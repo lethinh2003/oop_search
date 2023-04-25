@@ -1,6 +1,9 @@
 "use client";
+import { getToggleDarkMode } from "@/redux/actions/_darkMode";
 import { getToggleNavigation } from "@/redux/actions/_navigation";
 import ClearIcon from "@mui/icons-material/Clear";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
@@ -9,9 +12,12 @@ import SearchInput from "./SearchInput";
 const Header = ({}) => {
   const dispatch = useDispatch();
   const getStatusNavigation = useSelector((state) => state.navigation.on);
+  const getThemeMode = useSelector((state) => state.darkMode.on);
   const handleClickNavigation = () => {
-    console.log(getStatusNavigation);
     dispatch(getToggleNavigation(!getStatusNavigation));
+  };
+  const handleChangeMode = () => {
+    dispatch(getToggleDarkMode(!getThemeMode));
   };
 
   return (
@@ -52,13 +58,15 @@ const Header = ({}) => {
               {!getStatusNavigation && <ReorderIcon />}
               {getStatusNavigation && <ClearIcon />}
             </IconButton>
-            <Box>
-              <img
-                src="https://nhuthz10.github.io/Course-TA/assets/img/Logo.svg"
-                width={40}
-                height={40}
-              />
-            </Box>
+            <Link href="/">
+              <Box>
+                <img
+                  src="https://i.imgur.com/jStP8Cx.png"
+                  width={40}
+                  height={40}
+                />
+              </Box>
+            </Link>
             <SearchInput />
           </Box>
           <Box
@@ -67,7 +75,26 @@ const Header = ({}) => {
               gap: "10px",
             }}
           >
-            <Box className="btn is-center is-hover">
+            <Box
+              className="btn is-center"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "navigationItem.background.hover",
+                },
+              }}
+              onClick={handleChangeMode}
+            >
+              {!getThemeMode && <DarkModeIcon />}
+              {getThemeMode && <LightModeIcon />}
+            </Box>
+            <Box
+              className="btn is-center"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "navigationItem.background.hover",
+                },
+              }}
+            >
               <Link href="/learn">
                 <Typography>Learn</Typography>
               </Link>

@@ -18,14 +18,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <ThemeLayout>
-          <ReduxLayout>
+        <ReduxLayout>
+          <ThemeLayout>
             <UseQueryWrap>
               <Header />
               {children}
             </UseQueryWrap>
-          </ReduxLayout>
-        </ThemeLayout>
+          </ThemeLayout>
+        </ReduxLayout>
       </body>
     </html>
   );
