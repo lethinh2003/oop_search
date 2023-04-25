@@ -22,11 +22,18 @@ const Home = async ({ params }) => {
 export default Home;
 async function getDataBaiHoc(slug) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/baihoc/chitiet/${slug}`,
-    { next: { revalidate: 10 } }
+    `${process.env.NEXT_PUBLIC_ENDPOINT_SERVER}/api/v1/baihoc/chitiet/${slug}`
   );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
   return res.json();
+}
+
+export async function generateMetadata({ params }) {
+  const item = await getDataBaiHoc(params.slug);
+  return {
+    title: `Bài học: ${item.data.tenBaiHoc}`,
+    description: `Bài học: ${item.data.tenBaiHoc}`,
+  };
 }

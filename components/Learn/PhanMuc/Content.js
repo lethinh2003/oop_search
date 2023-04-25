@@ -5,7 +5,6 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Breadcrumbs, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Link from "next/link";
-import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import DanhSachCacBaiHoc from "./DanhSachCacBaiHoc";
@@ -14,7 +13,6 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
-      document.title = `Phân mục: ${data.data.tenPhanMuc}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.chuongHoc.phanLoai.slug,
@@ -25,7 +23,6 @@ const Content = ({ data }) => {
       );
     }
   }, [data]);
-  const params = useParams();
 
   const BreadcrumbItem = styled(Box)(({ theme }) => ({
     textTransform: "uppercase",

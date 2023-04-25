@@ -13,7 +13,6 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
-      document.title = `Chương học: ${data.data.tenChuongHoc}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.phanLoai.slug,

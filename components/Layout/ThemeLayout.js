@@ -126,7 +126,7 @@ const getDesignTokens = (mode) => ({
   typography: {
     fontSize: 25,
 
-    fontFamily: ["Inter", "Noto Sans", "sans-serif"].join(","),
+    fontFamily: ["Noto Sans", "Inter", "sans-serif"].join(","),
   },
   palette: {
     mode,

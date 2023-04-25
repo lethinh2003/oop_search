@@ -1,20 +1,21 @@
 "use client";
 import { getToggleDarkMode } from "@/redux/actions/_darkMode";
-import { getToggleNavigation } from "@/redux/actions/_navigation";
 import ClearIcon from "@mui/icons-material/Clear";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import ReorderIcon from "@mui/icons-material/Reorder";
 import { Box, IconButton, Typography } from "@mui/material";
 import Link from "next/link";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SearchInput from "./SearchInput";
+import NavigationMobile from "./NavigationMobile";
 const Header = ({}) => {
   const dispatch = useDispatch();
+  const [isOpenNavigation, setIsOpenNavigation] = useState(false);
   const getStatusNavigation = useSelector((state) => state.navigation.on);
   const getThemeMode = useSelector((state) => state.darkMode.on);
   const handleClickNavigation = () => {
-    dispatch(getToggleNavigation(!getStatusNavigation));
+    setIsOpenNavigation(!isOpenNavigation);
   };
   const handleChangeMode = () => {
     dispatch(getToggleDarkMode(!getThemeMode));
@@ -22,6 +23,9 @@ const Header = ({}) => {
 
   return (
     <>
+      {isOpenNavigation && (
+        <NavigationMobile handleClickNavigation={handleClickNavigation} />
+      )}
       <Box
         sx={{
           position: "fixed",
@@ -49,6 +53,7 @@ const Header = ({}) => {
               display: "flex",
               gap: "10px",
               flex: 1,
+              alignItems: "center",
             }}
           >
             <IconButton
@@ -67,14 +72,61 @@ const Header = ({}) => {
                 />
               </Box>
             </Link>
-            <SearchInput />
+            <Link href="/">
+              <Box
+                sx={{
+                  fontWeight: "600",
+                }}
+              >
+                AIKPCTP
+              </Box>
+            </Link>
+            <Box
+              className="btn is-center"
+              sx={{
+                display: { xs: "none", md: "block" },
+                "&:hover": {
+                  backgroundColor: "navigationItem.background.hover",
+                },
+              }}
+            >
+              <Link href="/learn">
+                <Typography sx={{}}>Tra cứu</Typography>
+              </Link>
+            </Box>
+            <Box
+              className="btn is-center"
+              sx={{
+                display: { xs: "none", md: "block" },
+                "&:hover": {
+                  backgroundColor: "navigationItem.background.hover",
+                },
+              }}
+            >
+              <Link href="/code-editor">
+                <Typography>Code Editor</Typography>
+              </Link>
+            </Box>
           </Box>
           <Box
             sx={{
-              display: "flex",
               gap: "10px",
+              alignItems: "center",
+              display: { xs: "none", md: "flex" },
             }}
           >
+            <Box
+              className="btn is-center"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "navigationItem.background.hover",
+                },
+              }}
+            >
+              <Link href="/about-us">
+                <Typography>Về chúng tui</Typography>
+              </Link>
+            </Box>
             <Box
               className="btn is-center"
               sx={{
@@ -86,18 +138,6 @@ const Header = ({}) => {
             >
               {!getThemeMode && <DarkModeIcon />}
               {getThemeMode && <LightModeIcon />}
-            </Box>
-            <Box
-              className="btn is-center"
-              sx={{
-                "&:hover": {
-                  backgroundColor: "navigationItem.background.hover",
-                },
-              }}
-            >
-              <Link href="/code-editor">
-                <Typography>Code Editor</Typography>
-              </Link>
             </Box>
           </Box>
         </Box>

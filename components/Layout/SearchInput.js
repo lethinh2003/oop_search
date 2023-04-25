@@ -28,6 +28,7 @@ const SearchInput = () => {
       <Box
         className="btn"
         sx={{
+          display: "flex",
           justifyContent: "flex-start",
           backgroundColor: "card.background.default",
           flex: 1,
