@@ -32,7 +32,8 @@ const PhanLoai = ({ phanLoai }) => {
           display: "flex",
           flexDirection: "column",
           paddingBottom: "10px",
-          borderBottom: "2px solid #f2f3f6",
+          borderBottom: "2px solid",
+          borderBottomColor: "navigationItem.color.bottom",
         }}
       >
         <Box
@@ -46,7 +47,7 @@ const PhanLoai = ({ phanLoai }) => {
                 textTransform: "uppercase",
                 fontSize: "1.5rem",
                 fontWeight: "bold",
-                color: isActive ? "#087ea4" : "#5e687e",
+                color: isActive ? "#087ea4" : "navigationItem.color.phanLoai",
               }}
             >
               {phanLoai.tenPhanLoai}

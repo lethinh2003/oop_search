@@ -8,11 +8,13 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import TableOfContent from "../Layout/TableOfContent";
+import TableOfContentMobile from "../Layout/TableOfContentMobile";
 import BaiHocLienQuan from "./BaiHocLienQuan";
 const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
+      document.title = `Bài học: ${data.data.tenBaiHoc}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.phanMuc.chuongHoc.phanLoai.slug,
@@ -55,7 +57,9 @@ const Content = ({ data }) => {
                 separator={
                   <KeyboardArrowRightIcon
                     sx={{
-                      fontSize: "1.2rem",
+                      fontSize: "2.5rem",
+                      fontWeight: "bold",
+                      color: "#087ea4",
                     }}
                   />
                 }
@@ -95,10 +99,11 @@ const Content = ({ data }) => {
 
               <BaiHocLienQuan data={data.data}></BaiHocLienQuan>
 
+              <TableOfContentMobile dataPost={data.data} />
+
               <Typography
                 component="div"
                 sx={{
-                  fontFamily: "Noto Sans",
                   width: "100%",
                   fontSize: "2rem",
                 }}

@@ -52,7 +52,8 @@ const SearchResult = ({ search }) => {
                 display: "flex",
                 flexDirection: "column",
                 paddingBottom: "10px",
-                borderBottom: "2px solid #ccc",
+                borderBottom: "2px solid",
+                borderBottomColor: "navigationItem.color.bottom",
               }}
             >
               <Box
@@ -65,7 +66,7 @@ const SearchResult = ({ search }) => {
                     textTransform: "uppercase",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: "#5e687e",
+                    color: "navigationItem.color.phanLoai",
                   }}
                 >
                   Phân loại
@@ -86,7 +87,8 @@ const SearchResult = ({ search }) => {
                 display: "flex",
                 flexDirection: "column",
                 paddingBottom: "10px",
-                borderBottom: "2px solid #ccc",
+                borderBottom: "2px solid",
+                borderBottomColor: "navigationItem.color.bottom",
               }}
             >
               <Box
@@ -99,7 +101,7 @@ const SearchResult = ({ search }) => {
                     textTransform: "uppercase",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: "#5e687e",
+                    color: "navigationItem.color.phanLoai",
                   }}
                 >
                   Chương học
@@ -120,7 +122,8 @@ const SearchResult = ({ search }) => {
                 display: "flex",
                 flexDirection: "column",
                 paddingBottom: "10px",
-                borderBottom: "2px solid #ccc",
+                borderBottom: "2px solid",
+                borderBottomColor: "navigationItem.color.bottom",
               }}
             >
               <Box
@@ -133,7 +136,7 @@ const SearchResult = ({ search }) => {
                     textTransform: "uppercase",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: "#5e687e",
+                    color: "navigationItem.color.phanLoai",
                   }}
                 >
                   Phân mục
@@ -154,7 +157,8 @@ const SearchResult = ({ search }) => {
                 display: "flex",
                 flexDirection: "column",
                 paddingBottom: "10px",
-                borderBottom: "2px solid #ccc",
+                borderBottom: "2px solid",
+                borderBottomColor: "navigationItem.color.bottom",
               }}
             >
               <Box
@@ -167,7 +171,7 @@ const SearchResult = ({ search }) => {
                     textTransform: "uppercase",
                     fontSize: "1.5rem",
                     fontWeight: "bold",
-                    color: "#5e687e",
+                    color: "navigationItem.color.phanLoai",
                   }}
                 >
                   Bài học

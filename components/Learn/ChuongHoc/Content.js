@@ -13,6 +13,7 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
+      document.title = `Chương học: ${data.data.tenChuongHoc}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.phanLoai.slug,
@@ -37,47 +38,67 @@ const Content = ({ data }) => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "20px",
+            width: "100%",
           }}
         >
-          <Breadcrumbs
-            separator={
-              <KeyboardArrowRightIcon
-                sx={{
-                  fontSize: "1.2rem",
-                }}
-              />
-            }
-            aria-label="breadcrumb"
-          >
-            <Link href={`/learn/phan-loai/${data.data.phanLoai.slug}`}>
-              <BreadcrumbItem>{data.data.phanLoai.tenPhanLoai}</BreadcrumbItem>
-            </Link>
-          </Breadcrumbs>
-          <Typography
-            className="learn__title"
+          <Box
             sx={{
-              fontWeight: "700",
-              fontSize: "3rem",
-              margin: "20px 0",
-            }}
-          >
-            Chương học: {data.data.tenChuongHoc}
-          </Typography>
-          <Typography
-            component="div"
-            sx={{
-              fontFamily: "Noto Sans",
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
               width: "100%",
-              fontSize: "2rem",
             }}
           >
-            <div
-              className="content-html"
-              dangerouslySetInnerHTML={{ __html: data.data.noiDung }}
-            />
-          </Typography>
-          <DanhSachCacPhanMuc data={data.phanMuc}></DanhSachCacPhanMuc>
+            <Breadcrumbs
+              separator={
+                <KeyboardArrowRightIcon
+                  sx={{
+                    fontSize: "1.2rem",
+                  }}
+                />
+              }
+              aria-label="breadcrumb"
+            >
+              <Link href={`/learn/phan-loai/${data.data.phanLoai.slug}`}>
+                <BreadcrumbItem>
+                  {data.data.phanLoai.tenPhanLoai}
+                </BreadcrumbItem>
+              </Link>
+            </Breadcrumbs>
+            <Typography
+              className="learn__title"
+              sx={{
+                fontWeight: "700",
+                fontSize: "3rem",
+                margin: "20px 0",
+              }}
+            >
+              Chương học: {data.data.tenChuongHoc}
+            </Typography>
+            <Typography
+              component="div"
+              sx={{
+                width: "100%",
+                fontSize: "2rem",
+              }}
+            >
+              <div
+                className="content-html"
+                dangerouslySetInnerHTML={{ __html: data.data.noiDung }}
+              />
+            </Typography>
+            <DanhSachCacPhanMuc data={data.phanMuc}></DanhSachCacPhanMuc>
+          </Box>
+          <Box
+            sx={{
+              width: "250px",
+              display: { xs: "none", lg: "flex" },
+
+              maxWidth: "250px",
+            }}
+          ></Box>
         </Box>
       )}
     </>

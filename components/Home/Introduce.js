@@ -25,11 +25,7 @@ const Introduce = () => {
       >
         <Box>
           {" "}
-          <img
-            src="https://nhuthz10.github.io/Course-TA/assets/img/Logo.svg"
-            width={120}
-            height={120}
-          />
+          <img src="https://i.imgur.com/jStP8Cx.png" width={120} height={120} />
         </Box>
         <Box>
           <Typography

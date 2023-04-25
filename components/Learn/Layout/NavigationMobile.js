@@ -14,7 +14,7 @@ const NavigationMobile = ({ staticData }) => {
           sx={{
             marginTop: "64px",
             width: "100%",
-            backgroundColor: "header.background.default",
+            backgroundColor: "body.background.default",
             zIndex: 99,
             color: "text.color.first",
             top: 0,
@@ -43,7 +43,8 @@ const NavigationMobile = ({ staticData }) => {
                       display: "flex",
                       flexDirection: "column",
                       paddingBottom: "10px",
-                      borderBottom: "2px solid #ccc",
+                      borderBottom: "2px solid",
+                      borderBottomColor: "navigationItem.color.bottom",
                     }}
                   >
                     <Box

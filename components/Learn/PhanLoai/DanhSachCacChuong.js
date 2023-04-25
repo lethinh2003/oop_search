@@ -1,40 +1,31 @@
 "use client";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Link from "next/link";
+import ItemLesson from "../ItemLesson";
 const DanhSachCacChuong = ({ data }) => {
+  console.log(data);
   return (
     <>
       {data && data.length > 0 && (
         <Box
           sx={{
-            backgroundColor: "#f6f7f9",
-            padding: "20px",
-            borderRadius: "15px",
-            border: "2px solid #e5e7eb",
+            gridTemplateColumns: {
+              xs: "repeat(1, minmax(0, 1fr))",
+              md: "repeat(2, minmax(0, 1fr))",
+            },
+            display: "grid",
+            gap: "20px",
             marginTop: "20px",
           }}
         >
-          <Typography
-            sx={{
-              fontSize: "2.5rem",
-              fontWeight: "bold",
-            }}
-          >
-            Danh sách các chương học
-          </Typography>
-          <Box
-            component={"ul"}
-            sx={{
-              listStyleType: "disc",
-              paddingLeft: "30px",
-            }}
-          >
-            {data.map((item, i) => (
-              <Link key={i} href={`/learn/chuong-hoc/${item.slug}`}>
-                <Typography component={"li"}>{item.tenChuongHoc}</Typography>
-              </Link>
-            ))}
-          </Box>
+          {data.map((item, i) => (
+            <Link key={i} href={`/learn/chuong-hoc/${item.slug}`}>
+              <ItemLesson
+                tieuDe={`Chương ${i + 1}: ${item.tenChuongHoc}`}
+                noiDung={item.noiDung}
+              ></ItemLesson>
+            </Link>
+          ))}
         </Box>
       )}
     </>

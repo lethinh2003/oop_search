@@ -1,6 +1,7 @@
-export const _darkMode = (payload) => (dispatch) => {
+import { SET_DARKMODE } from "./constants";
+export const getToggleDarkMode = (value) => (dispatch) => {
   dispatch({
-    type: payload.type,
-    data: payload.data,
+    type: SET_DARKMODE,
+    data: value,
   });
 };

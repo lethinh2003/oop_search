@@ -1,3 +1,4 @@
+import MainLayout from "@/components/Layout/MainLayout";
 import Main from "@/components/Learn/Layout/Main";
 import Navigation from "@/components/Learn/Layout/Navigation";
 import NavigationMobile from "@/components/Learn/Layout/NavigationMobile";
@@ -19,12 +20,12 @@ export default async function DashboardLayout({
 
   return (
     <>
-      <div className="layout-learn">
+      <MainLayout>
         <Navigation staticData={staticData}></Navigation>
         <NavigationMobile staticData={staticData}></NavigationMobile>
 
         <Main>{children}</Main>
-      </div>
+      </MainLayout>
     </>
   );
 }

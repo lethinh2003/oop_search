@@ -1,12 +1,13 @@
 "use client";
+import { getToggleDarkMode } from "@/redux/actions/_darkMode";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer } from "react-toastify";
 import { createGlobalStyle } from "styled-components";
-
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: ${({ theme }) => theme.palette.box.background.default};
+    background-color: ${({ theme }) => theme.palette.header.background.default};
   }
  
 .MuiBackdrop-root {
@@ -37,6 +38,45 @@ bottom: 0;
     width: 2px;
     position: absolute;
     height: 100%;
+  }
+}
+pre {
+   margin: 20px 0px;
+    width: 100%;
+    color: #ffffff;
+    font-size: 2rem;
+    padding: 1.5rem 1rem;
+    overflow-x: auto;
+    background-color: ${({ theme }) =>
+      theme.palette.backgroundCode.background.default};
+      box-shadow: ${({ theme }) =>
+        `1px 2px 6px 3px ${theme.palette.backgroundCode.background.boxShadow}`};
+    code {
+      color: ${({ theme }) => theme.palette.backgroundCode.background.color};
+      background-color: unset;
+      font-weight: 500;
+      &:before, &:after
+    {
+      content: "";
+    }
+    }
+  }
+    code {
+    font-weight: 600;
+    color: ${({ theme }) => theme.palette.backgroundCode.background.color};
+    overflow-x: auto;
+  
+    &:before, &:after
+    {
+      content: "${"`"}";
+    }
+  } 
+  ::-webkit-scrollbar-thumb {
+  background-color:  ${({ theme }) =>
+    theme.palette.scrollBar.background.default};
+  &:hover {
+    background-color:  ${({ theme }) =>
+      theme.palette.scrollBar.background.hover};
   }
 }
 `;
@@ -86,7 +126,7 @@ const getDesignTokens = (mode) => ({
   typography: {
     fontSize: 25,
 
-    fontFamily: ["Intent", "Noto Sans", "sans-serif"].join(","),
+    fontFamily: ["Inter", "Noto Sans", "sans-serif"].join(","),
   },
   palette: {
     mode,
@@ -131,18 +171,85 @@ const getDesignTokens = (mode) => ({
               default: "#ffffff",
             }
           : {
-              default: "#0e1217",
+              default: "#232730",
             }),
       },
     },
-    bottomMenu: {
+    body: {
       background: {
         ...(mode === "light"
           ? {
-              default: "#323435",
+              default: "#ffffff",
             }
           : {
+              default: "#23272f",
+            }),
+      },
+    },
+    scrollBar: {
+      background: {
+        ...(mode === "light"
+          ? {
+              default: "#c0c0c0",
+              hover: "#686868",
+            }
+          : {
+              default: "#686868",
+              hover: "#c0c0c0",
+            }),
+      },
+    },
+    navigationItem: {
+      background: {
+        ...(mode === "light"
+          ? {
+              active: "#e6f7ff",
+              hover: "#f6f7f9",
+            }
+          : {
+              active: "#283541",
+              hover: "#343a46",
+            }),
+      },
+      color: {
+        ...(mode === "light"
+          ? {
+              phanLoai: "#5e687e",
+              bottom: "#f2f3f6",
+            }
+          : {
+              phanLoai: "#99a1b3",
+              bottom: "#353535",
+            }),
+      },
+    },
+    card: {
+      background: {
+        ...(mode === "light"
+          ? {
+              default: "#f6f7f9",
+              border: "#e5e7eb",
+            }
+          : {
+              default: "#343a46",
+              border: "#363b47",
+            }),
+      },
+    },
+    backgroundCode: {
+      background: {
+        ...(mode === "light"
+          ? {
               default: "#ffffff",
+              border: "#e5e7eb",
+              color: "#6c6f73",
+              boxShadow: "#d0d0d0",
+            }
+          : {
+              default: "#16181d",
+              border: "#363b47",
+              color: "#dddddd",
+              boxShadow: "#292828",
             }),
       },
     },
@@ -493,11 +600,19 @@ const getDesignTokens = (mode) => ({
   },
 });
 const ThemeLayout = (props) => {
+  const getThemeMode = useSelector((state) => state.darkMode.on);
+  const dispatch = useDispatch();
+
   const [isDarkMode, setIsDarkMode] = useState(false);
   useEffect(() => {
     const getTheme = JSON.parse(localStorage.getItem("darkMode")) || false;
-    setIsDarkMode(getTheme);
+
+    dispatch(getToggleDarkMode(getTheme));
   }, []);
+  useEffect(() => {
+    localStorage.setItem("darkMode", getThemeMode);
+    setIsDarkMode(getThemeMode);
+  }, [getThemeMode]);
   const theme = createTheme(getDesignTokens(isDarkMode ? "dark" : "light"));
 
   return (

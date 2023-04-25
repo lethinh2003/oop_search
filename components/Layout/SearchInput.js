@@ -29,7 +29,7 @@ const SearchInput = () => {
         className="btn"
         sx={{
           justifyContent: "flex-start",
-          backgroundColor: "#e8eaee",
+          backgroundColor: "card.background.default",
           flex: 1,
           gap: "10px",
           color: "#a5adbb",
@@ -37,12 +37,13 @@ const SearchInput = () => {
       >
         <SearchIcon></SearchIcon>
         <input
+          component="input"
           type="text"
           placeholder="Search"
           className="input-search"
           value={searchValue}
           onChange={handleChangeSeachValue}
-        />
+        ></input>
         {isLoading && (
           <Box
             sx={{

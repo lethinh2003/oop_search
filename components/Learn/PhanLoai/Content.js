@@ -10,6 +10,7 @@ const Content = ({ data }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (data && data.data) {
+      document.title = `Phân loại: ${data.data.tenPhanLoai}`;
       dispatch(
         setNavigationContent({
           phanLoai: data.data.slug,
@@ -27,33 +28,51 @@ const Content = ({ data }) => {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            alignItems: "flex-start",
+            gap: "20px",
+            width: "100%",
           }}
         >
-          <Typography
-            className="learn__title"
+          <Box
             sx={{
-              fontWeight: "700",
-              fontSize: "3rem",
-              margin: "20px 0",
-            }}
-          >
-            Phân loại: {data.data.tenPhanLoai}
-          </Typography>
-          <Typography
-            component="div"
-            sx={{
-              fontFamily: "Noto Sans",
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
               width: "100%",
-              fontSize: "2rem",
             }}
           >
-            <div
-              className="content-html"
-              dangerouslySetInnerHTML={{ __html: data.data.noiDung }}
-            />
-          </Typography>
-          <DanhSachCacChuong data={data.chuongHoc}></DanhSachCacChuong>
+            <Typography
+              className="learn__title"
+              sx={{
+                fontWeight: "700",
+                fontSize: "3rem",
+                margin: "20px 0",
+              }}
+            >
+              Phân loại: {data.data.tenPhanLoai}
+            </Typography>
+            <Typography
+              component="div"
+              sx={{
+                width: "100%",
+                fontSize: "2rem",
+              }}
+            >
+              <div
+                className="content-html"
+                dangerouslySetInnerHTML={{ __html: data.data.noiDung }}
+              />
+            </Typography>
+            <DanhSachCacChuong data={data.chuongHoc}></DanhSachCacChuong>
+          </Box>
+          <Box
+            sx={{
+              width: "250px",
+              display: { xs: "none", lg: "flex" },
+
+              maxWidth: "250px",
+            }}
+          ></Box>
         </Box>
       )}
     </>

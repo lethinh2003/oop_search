@@ -29,7 +29,7 @@ body {
   border-radius: 20px;
   display: flex;
   align-items: center;
-  min-width: 100px;
+  min-width: 50px;
   padding: 6px 12px;
   cursor: pointer;
   font-size: 1.8rem;
@@ -62,16 +62,10 @@ body {
   font-size: 3rem;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
   height: 5px;
 }
-::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 5px;
-  &:hover {
-    background: #aba8a8;
-  }
-}
+
 ::-webkit-scrollbar-track {
   background: inherit;
 }
@@ -104,7 +98,6 @@ menu {
 }
 code[class*="language-"],
 pre[class*="language-"] {
-  color: #ccc;
   background: none;
   font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
   font-size: 1em;
@@ -129,15 +122,14 @@ pre[class*="language-"] {
 }
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: #2d2d2d;
 }
 pre {
   border-radius: 10px;
   padding: 10px;
-  background: #2d2d2d;
+
   overflow: auto;
   max-width: 800px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 code {
   background-color: rgba(255, 255, 255, 0.05);
@@ -147,7 +139,7 @@ code {
   & img {
     max-width: 800px;
     width: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
   }
 }
 
@@ -156,6 +148,6 @@ code {
   border: none;
   background: unset;
   width: 100%;
-  color: #23272f;
+
   font-weight: 500;
 }

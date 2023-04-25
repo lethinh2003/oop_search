@@ -7,10 +7,13 @@ const BaiHocLienQuan = ({ data }) => {
       {data && data.baiHocLienQuan && data.baiHocLienQuan.length > 0 && (
         <Box
           sx={{
-            backgroundColor: "#f6f7f9",
+            backgroundColor: "card.background.default",
             padding: "20px",
             borderRadius: "15px",
-            border: "2px solid #e5e7eb",
+            border: "2px solid",
+            borderColor: "card.background.border",
+            boxShadow: (theme) =>
+              `1px 2px 6px 0px ${theme.palette.backgroundCode.background.boxShadow}`,
           }}
         >
           <Typography

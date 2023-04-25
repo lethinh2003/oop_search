@@ -1,7 +1,7 @@
 "use client";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -48,7 +48,7 @@ const PhanMuc = ({ phanmuc, i }) => {
           borderTopRightRadius: "20px",
           borderBottomRightRadius: "20px",
           "&:hover": {
-            backgroundColor: "#f6f7f9",
+            backgroundColor: "navigationItem.background.hover",
             borderTopRightRadius: "20px",
             borderBottomRightRadius: "20px",
           },
@@ -59,13 +59,13 @@ const PhanMuc = ({ phanmuc, i }) => {
         <Typography
           sx={{
             fontWeight: 600,
-            color: isActive ? "#087ea4" : "#404756",
+            color: isActive ? "#087ea4" : "",
           }}
           onClick={(e) => handleClick(e, phanmuc)}
         >
           Phân mục {i + 1}: {phanmuc.tenPhanMuc}
         </Typography>
-        <IconButton onClick={() => setIsExpand(!isExpand)}>
+        <Box onClick={() => setIsExpand(!isExpand)}>
           {!isExpand && (
             <KeyboardArrowRightIcon
               sx={{
@@ -82,7 +82,7 @@ const PhanMuc = ({ phanmuc, i }) => {
               }}
             />
           )}
-        </IconButton>
+        </Box>
       </Box>
       <Box
         sx={{

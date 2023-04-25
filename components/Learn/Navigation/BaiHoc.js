@@ -26,11 +26,11 @@ const BaiHoc = ({ baihoc, i }) => {
           padding: "8px 10px",
           paddingLeft: "20px",
           cursor: "pointer",
-          backgroundColor: isActive ? "#e6f7ff" : "",
+          backgroundColor: isActive ? "navigationItem.background.active" : "",
           borderTopRightRadius: "20px",
           borderBottomRightRadius: "20px",
           "&:hover": {
-            backgroundColor: "#f6f7f9",
+            backgroundColor: "navigationItem.background.hover",
             borderTopRightRadius: "20px",
             borderBottomRightRadius: "20px",
           },
