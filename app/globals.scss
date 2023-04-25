@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap");
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -23,6 +24,7 @@ html {
 body {
   color: rgb(var(--foreground-rgb));
   font-size: 2rem;
+  font-family: "Noto Sans", "Inter", sans-serif;
 }
 
 .btn {

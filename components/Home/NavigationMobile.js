@@ -69,7 +69,7 @@ const NavigationMobile = ({ handleClickNavigation }) => {
                     fontWeight: "600",
                   }}
                 >
-                  AIKPCTP
+                  TraCuuOOP
                 </Typography>
               </Link>
 

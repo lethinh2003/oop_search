@@ -23,7 +23,9 @@ const SearchResult = ({ search }) => {
     }
   };
   useEffect(() => {
-    getSearchResult();
+    if (search !== "") {
+      getSearchResult();
+    }
   }, [search]);
   return (
     <>

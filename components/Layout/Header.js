@@ -73,6 +73,7 @@ const Header = ({}) => {
             sx={{
               display: "flex",
               gap: "10px",
+              alignItems: "center",
             }}
           >
             <Box
@@ -96,7 +97,7 @@ const Header = ({}) => {
               }}
             >
               <Link href="/code-editor">
-                <Typography>Code Editor</Typography>
+                <Typography>Editor</Typography>
               </Link>
             </Box>
           </Box>
