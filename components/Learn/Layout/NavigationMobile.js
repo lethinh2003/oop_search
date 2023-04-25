@@ -24,7 +24,7 @@ const NavigationMobile = ({ staticData }) => {
         >
           <Box
             sx={{
-              maxHeight: "calc(100vh - 64px)",
+              maxHeight: "calc(100vh - 150px)",
               overflowY: "auto",
             }}
           >

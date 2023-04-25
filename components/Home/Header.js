@@ -78,7 +78,7 @@ const Header = ({}) => {
                   fontWeight: "600",
                 }}
               >
-                AIKPCTP
+                TraCuuOOP
               </Box>
             </Link>
             <Box

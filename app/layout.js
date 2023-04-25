@@ -27,6 +27,26 @@ export const metadata = {
     shortcut: "/icon.png",
     apple: "/icon.png",
   },
+  openGraph: {
+    title: "Tra cứu kiến thức OOP",
+    description:
+      "Trang web tra cứu kiến thức OOP, bao gồm các định nghĩa, tính chất, các dạng bài tập.",
+    images: [
+      {
+        url: "https://i.imgur.com/P7uOV9n.png",
+        width: 1800,
+        height: 1600,
+      },
+      {
+        url: "https://i.imgur.com/P7uOV9n.png",
+        width: 1800,
+        height: 1600,
+        alt: "My custom alt",
+      },
+    ],
+    locale: "en-US",
+    type: "website",
+  },
 };
 const inter = Inter({
   subsets: ["latin"],
