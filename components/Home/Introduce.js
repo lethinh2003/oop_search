@@ -151,7 +151,7 @@ const Introduce = () => {
                 >
                   Code Editor
                 </Typography>
-                <Typography>Trình biên soạn code trực tiếp</Typography>
+                <Typography>Trình biên soạn code</Typography>
               </Box>
             </Box>
           </Link>
