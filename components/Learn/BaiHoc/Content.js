@@ -1,5 +1,5 @@
 "use client";
-import Edit from "@/components/Edit/Edit";
+// import Edit from "@/components/Edit/Edit";
 import { setNavigationContent } from "@/redux/actions/_navigationContent";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { Box, Breadcrumbs, Typography } from "@mui/material";
@@ -113,7 +113,7 @@ const Content = ({ data }) => {
                   dangerouslySetInnerHTML={{ __html: data.data.noiDung }}
                 />
               </Typography>
-              <Edit data={data.data} />
+              {/* <Edit data={data.data} /> */}
             </Box>
             <TableOfContent dataPost={data.data} />
           </Box>
